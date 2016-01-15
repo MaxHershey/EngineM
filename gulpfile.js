@@ -10,12 +10,13 @@ var ts = require('gulp-typescript');
 var tslint = require('gulp-tslint');
 
 // need seperate project fr each task
-var tsApp = ts.createProject('../tsconfig.json');
-var tsEngineM = ts.createProject('../tsconfig.json');
+var tsApp = ts.createProject('../../tsconfig.json');
+var tsEngineM = ts.createProject('../../tsconfig.json');
 
 // everything you need for development
 gulp.task('default', function(callback) {
     runSequence(
+        'clean.dist',
         'ts.app',
         'ts.engine.m',
         'inject',
@@ -27,11 +28,8 @@ gulp.task('default', function(callback) {
 // --------------------
 
 gulp.task('clean.dist', function(callback) {
-    return del('dist', callback);
-});
-
-gulp.task('clean.fusion', function(callback) {
-    return del('Fusion', callback);
+     del('dist', callback);
+     return del('index.html', callback);
 });
 
 // build
@@ -74,5 +72,5 @@ gulp.task('inject', function () {
 
     return gulp.src('invaders/index.html')
         .pipe(inject(sources, { relative: true }))
-        .pipe(gulp.dest(''));
+        .pipe(gulp.dest('invaders/index.html'));
 });

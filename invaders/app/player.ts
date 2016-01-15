@@ -29,12 +29,11 @@ class Player extends EngineM.Entity {
                 this.isShooting = true;
                 this.game.entities.push(bullet);
                 
-                // todo: fix sound loader.
-                // this.game.sounds['audio/pew.wav']();
+                this.game.sounds['audio/pew.wav']();
                 
                 setTimeout(() => {
                     this.isShooting = false;
-                }, 1000);
+                }, 1500);
             }
     }
 }

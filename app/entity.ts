@@ -14,11 +14,11 @@ module EngineM {
         public height: number = 0;
         
         public draw(): void {
-            
+            // default let Game() draw rectangles
         }
         
         public update(): void {
-            
+            // default let Game() draw rectangles
         }
     }
 }

@@ -60,19 +60,17 @@ module EngineM {
             for (var url of urls) {
                 var promise = new Promise<any>((resolve, reject) => {
                     var sound = new Audio(url);
-                    sound.addEventListener('canplaythrough', loaded);
-                
-                    var loaded = () => {
-                        sound.removeEventListener('canplaythrough', loaded);
-                        this.sounds[url] = () => {
-                            sound.load();
-                            sound.play();   
-                        };
-                        
-                        resolve();
-                    }; 
                     
-                    sound.load();       
+                    this.sounds[url] = function() {
+                        sound.play();   
+                    };
+                    
+                    sound.addEventListener('canplaythrough', function() {
+                        sound.removeEventListener('canplaythrough', this, false);
+                        resolve();
+                    }, false);
+                    
+                    sound.load();
                 });
                 
                 promises.push(promise);

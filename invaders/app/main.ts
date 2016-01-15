@@ -11,10 +11,8 @@ class Main extends EngineM.Game {
         this.entities = this.createInvaders().concat(new Player(this));
         
         this.loadSounds(['audio/pew.wav']).then(() => {
-            // todo init in here once sounds are loading properly
+            super.init();
         });
-        
-        super.init();
     }
     
     public update(): void {
