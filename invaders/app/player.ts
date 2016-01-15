@@ -1,6 +1,7 @@
-class Player implements EngineM.IEntity {
+class Player extends EngineM.Entity {
     
     constructor(game: EngineM.Game) {
+        super();
         this.game = game;
         this.width = 15;
         this.height = 15;
@@ -12,9 +13,6 @@ class Player implements EngineM.IEntity {
     }
     
     public game: EngineM.Game;
-    public center: EngineM.IPoint;
-    public width: number;
-    public height: number;
     public keyboard: EngineM.IKeyboard;
     public isShooting: boolean = false;
     
@@ -38,9 +36,5 @@ class Player implements EngineM.IEntity {
                     this.isShooting = false;
                 }, 1000);
             }
-    }
-    
-    public draw(): void {
-        // let the dubug mode draw us a rectangle.
     }
 }
